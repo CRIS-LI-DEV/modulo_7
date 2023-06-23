@@ -1,0 +1,82 @@
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+        @import url('https://fonts.googleapis.com/css2?family=Belanosima:wght@600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,900&display=swap');
+
+        * {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .fakeimg {
+            height: 200px;
+            background: #aaa;
+        }
+
+
+        .main {
+            min-height: 450px;
+        }
+
+        .log {
+            color: white;
+            text-decoration: none;
+        }
+
+        .log:hover {
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo {
+            font-family: 'Titillium Web', sans-serif;
+        }
+
+        .card {
+            box-shadow: 2px 2px 22px rgba(0, 0, 0, 0.6);
+            border: none;
+        }
+
+        .img-thumbnail {
+            border: none;
+        }
+
+        .navegador {
+            box-shadow: 2px 2px 22px rgba(0, 0, 0, 0.6);
+        }
+
+        #contenedor_logo {
+
+            background-color: #5f0099;
+            text-shadow: 2px 2px 22px rgba(0, 0, 0, 0.2);
+        }
+
+        #contenedor_logo h2 {
+            font-family: 'Titillium Web', sans-serif;
+            text-shadow: 2px 2px 22px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            box-shadow: 2px 2px 22px rgba(0, 0, 0, 0.6);
+
+        }
+
+        .cover h4 {
+            font-family: 'Titillium Web', sans-serif;
+            text-shadow: 2px 2px 22px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .cover h3 {
+            font-family: 'Titillium Web', sans-serif;
+            text-shadow: 2px 2px 22px rgba(0, 0, 0, 0.5);
+            font-size: 60px;
+            margin-bottom: 100px;
+        }
+
+        .img_cover {
+            box-shadow: 2px 2px 22px rgba(0, 0, 0, 0.2);
+        }
+
+        .perfil-user h1 {
+            font-family: 'Titillium Web', sans-serif;
+            color: #5f0099;
+        }

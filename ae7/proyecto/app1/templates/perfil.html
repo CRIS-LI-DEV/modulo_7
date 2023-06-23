@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block contenido %} {% load static%}
+
+<div class="row justify-content-center">
+  <div class="col-sm-10">
+    <div class="card">
+      <div class="card-body text-center perfil-user">
+       
+        <h1>BIENVENIDO USUARIO {{user.username}}</h1>
+
+      
+            <div>NOMBRE COMPLETO  : {{user.first_name}} {{user.last_name}}</div><br>
+
+        
+            <div>EMAIL : {{user.email}}</div>
+            <div></div><br>
+         
+    </div>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
