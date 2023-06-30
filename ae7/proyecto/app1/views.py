@@ -49,3 +49,5 @@ def perfil(request):
 
 def inicio(request):
     return render(request,'inicio.html')
+def funcionprueba():
+    pass
