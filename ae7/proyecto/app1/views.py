@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.http import HttpResponse
-from app1.forms import LoginUsuario
+from app1.forms import *
 from app1.models import Tarea
 from django.contrib.auth import login, authenticate , logout
 # Create your views here.
@@ -49,5 +49,9 @@ def perfil(request):
 
 def inicio(request):
     return render(request,'inicio.html')
-def funcionprueba():
-    pass
+
+def registro_tareas(request):
+    template="registro_tarea.html"
+    registro_tareas_form = RegistroTareasForm()
+    context={'formulario': registro_tareas_form }
+    return render(request, template,context)
