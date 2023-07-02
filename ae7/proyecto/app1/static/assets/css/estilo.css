@@ -15,7 +15,7 @@
 
 
         .main {
-            min-height: 450px;
+            min-height: 750px;
         }
 
         .log {
@@ -33,7 +33,7 @@
         }
 
         .card {
-            box-shadow: 2px 2px 22px rgba(0, 0, 0, 0.6);
+            box-shadow: 2px 2px 22px rgba(0, 0, 0, 0.4);
             border: none;
         }
 
@@ -55,7 +55,7 @@
             font-family: 'Titillium Web', sans-serif;
             text-shadow: 2px 2px 22px rgba(0, 0, 0, 0.2);
             text-align: center;
-            box-shadow: 2px 2px 22px rgba(0, 0, 0, 0.6);
+            box-shadow: 2px 2px 22px rgba(0, 0, 0, 0.);
 
         }
 

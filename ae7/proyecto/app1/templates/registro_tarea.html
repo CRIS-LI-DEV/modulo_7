@@ -2,17 +2,125 @@
 {% block contenido %}
 {% load static%}
 
-<div class="row justify-content-center">
-    <div class="card"></div>
-    <div class="col-sm-3  cover">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script>
 
-     
+
+$(document).ready(function(){
+  $("#toggle").click(function(){
+    $("#filtro").fadeToggle(300);
+  
+  });
+   $("#filtro").hide();
+});
+</script>
+
+<div class="row justify-content-center" >
+    <div class="card"></div>
+     <div class="col-sm-4  cover mb-3" >
+
+        <div class="card">
+            <div class="card-head" style="background-color: #5f0099; color:white;border: none; padding: 5px; ">  <h6 >BIENVENIDO USUARIO {{user.username}}</h6></div>
+<div class="card-body">
+  
+
+      
+            <div>NOMBRE COMPLETO  : {{user.first_name}} {{user.last_name}}</div><br>
+
+        
+            <div>EMAIL : {{user.email}}</div>
+
+</div>
+
+        </div>
+  
+    </div>
+    <div class="col-sm-8  cover ">
+
+        <div class="card">
+
+            <div class="card-head" style="background-color: #5f0099; color:white;border: none;padding:5px">LISTA DE TAREAS</div>
+            <div class="card-body">
+
+
+       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" style="background-color: #5f0099; color:white;border: none;">
+    AGREGAR TAREA
+  </button>
+  <button id="toggle"  class="btn" style="background-color:#3ee9e3; color:white;">FILTRAR TAREAS</button>
+<hr>
+  <form action="/filtro/" method="POST" id="filtro">
+
+         {% csrf_token %}
+
+                    {{ filtro }}
+                    <div></div><br>
+<input type="submit"  class="btn" style="background-color:#3ee9e3; color:white;">
+  </form>
+  
+  
+  <hr>
+
+                   <table class="table">
+    <thead>
+<tr><th>NOMBRE</th> <th>VENCIMIENTO</th> <th>ESTADO</th><th>BORRAR</th></tr>
+    </thead >
+<tbody>
+     {% for tarea in lista %}
+    <tr><td> <button  class="btn" style="background-color:#3ee9e3; color:white;">{{ tarea.nombre}}</button></td> 
+        
+          <td>  {{ tarea.estado.nombre}}</td>
+           <td>  {{ tarea.categoria.nombre}}</td> 
+           <td><button class="btn btn-danger">x</button></td></tr>
+  
+  
+  
+ 
+ 
+   {% endfor %}
+
+</tbody>
+   </table>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+
+
+
+
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+      <div class="modal-header" style="background-color: #5f0099; color:white;border: none;">
+        <h4 class="modal-title">AGREGAR TAREA</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" ></button>
+      </div>
+
+      <div class="modal-body">
+        <form method="POST" action="/registro_tareas/">
+
                     {% csrf_token %}
 
                     {{ formulario }}
 
-   
-   
+<input type="submit" value="GUARDAR TAREA">
+
+</form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"  style="background-color: #5f0099; color:white;border: none;" >CERRAR</button>
+      </div>
+
     </div>
+  </div>
 </div>
+
+
 {% endblock %}

@@ -10,6 +10,7 @@ urlpatterns = [
     path('perfil/',login_required(perfil),name="PERFIL"),
     path('inicio/',inicio,name="INICIO"),
     path('',inicio,name="INICIO"),
-    path('registro_tareas/',registro_tareas,name="INICIO"),
+    path('registro_tareas/',RegistroTareas.as_view(),name="INICIO"),
+    path('filtro/',funcion_filtro,name="FILTRO")
 
 ]
