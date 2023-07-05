@@ -1,0 +1,225 @@
+{% extends 'base.html' %} {% block contenido %} {% load static%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<div class="row justify-content-center">
+  <div class="col-sm-6">
+    <div class="card mb-2 " style="border: #5f0099 solid 2px; border-radius: 20px;">
+      <div class="card-header text-center"
+        style="background-color: #5f0099; color:white;border: none; border-radius: 15px;"> <i
+          class="fa-brands fa-codepen"></i> TAREA : {{tarea.nombre}} </div>
+      <div class="card-body">
+
+
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editar"
+          style="background-color: #5f0099; color:white;border: none;">
+          <i class="fa-solid fa-paintbrush"></i> EDITAR TAREA
+        </button>
+
+        <button class="btn btn-warning m-2"><a href="/completar_tarea/{{tarea.id}}"> <i class="fa-solid fa-check"></i>
+            COMPLETAR</a> </button>
+        <button class="btn btn-warning m-2"> <a href="/eliminar_tarea/{{tarea.id}}"><i
+              class="fa-solid fa-circle-xmark"></i> ELIMINAR</a> </button>
+        <button class="btn btn-warning m-2"><a href="/registro_tareas/"> <i class="fa-solid fa-list"></i> REANUDAR</a>
+        </button>
+        <hr>
+        <table class="table .table-bordered">
+          <tbody>
+            <tr>
+              <td>ID</td>
+              <td>
+                {{tarea.id}}</td>
+            </tr>
+            <tr>
+              <td>DESCRIPCION</td>
+              <td>
+                {{tarea.descripcion}}</td>
+            </tr>
+
+
+            <tr>
+              <td>CATEGORIA</td>
+              <td>{{tarea.categoria.nombre }}</td>
+            </tr>
+
+
+            <tr>
+              <td>ESTADO</td>
+              <td>{{tarea.estado.nombre}}</td>
+            </tr>
+
+
+            <tr>
+              <td>VENCIMIENTO</td>
+              <td>{{tarea.vencimiento}}</td>
+            </tr>
+
+
+            <tr>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+
+
+
+        </table>
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-sm-6">
+    <div class="card" style="border: #5f0099 solid 2px; border-radius: 20px;">
+      <div class="card-header text-center"
+        style="background-color: #5f0099; color:white;border: none; border-radius: 15px;"> <i
+          class="fa-brands fa-codepen"></i> OBSERVACIONES </div>
+      <div class="card-body">
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#observaciones"
+          style="background-color: #5f0099; color:white;border: none;">
+          AGREGAR OBSERVACION
+        </button>
+
+
+        <hr>
+        <table class="table">
+          <tbody>
+
+            {% for observacion in observaciones %}
+            <script>
+
+
+              $(document).ready(function () {
+                $("#b{{ observacion.id}}").click(function () {
+                  $("#f{{ observacion.id}}").fadeToggle(300);
+
+                });
+                $("#f{{ observacion.id}}").hide();
+              });
+            </script>
+
+
+            <tr>
+
+              <td>
+                <form method="POST" action="/editar_ob/{{ observacion.id}}/{{tarea.id}}" id="f{{ observacion.id}}">
+
+                  {% csrf_token %}
+
+                  <input type="text" name="observacion" class="form-control">
+
+
+                  <input type="submit" class="btn btn-warning my-3" value="AGREGAR">
+
+                </form>
+
+
+
+              </td>
+
+            </tr>
+
+            <tr>
+
+              <td>{{observacion.observacion}} <br>
+                <button  id="b{{ observacion.id}}" class="btn btn-warning"><i class="fa-solid fa-pen"></i></button>
+                 <button   class="btn btn-danger">
+                  <a href="/borrar_ob/{{ observacion.id}}/{{tarea.id}}"> <i class="fa-solid fa-x"></i></a>
+                 </button></td>
+
+            </tr>
+
+            <tr>
+
+              <td></td>
+
+            </tr>
+            {% endfor %}
+          </tbody>
+
+
+
+        </table>
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="modal" id="editar">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+      <div class="modal-header" style="background-color: #5f0099; color:white;border: none;">
+        <h4 class="modal-title">EDITAR TAREA</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form method="POST" action="/editar_tarea/{{tarea.id}}">
+
+          {% csrf_token %}
+
+          {{ formulario }}
+          <hr>
+          <input type="submit" class="btn btn-warning" value="MODIFICAR">
+
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+          style="background-color: #5f0099; color:white;border: none;">CERRAR</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<div class="modal" id="observaciones">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+
+      <div class="modal-header" style="background-color: #5f0099; color:white;border: none;">
+        <h4 class="modal-title">AGREGAR OBSERVACION</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <form method="POST" action="/agregar_observacion/">
+
+          {% csrf_token %}
+
+          {{ ob_form }}
+          <hr>
+          <input type="submit" class="btn btn-warning" value="AGREGAR">
+
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+          style="background-color: #5f0099; color:white;border: none;">CERRAR</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -3,15 +3,22 @@
 {% load static%}
 
 <div class="row justify-content-center">
-    <div class="col-sm-4 ">
+    <div class="col-sm-12 col-md-12 col-lg-4 ">
 
         <div class="card">
 
             <div class="card-header" style="background-color: #5f0099; color:white;">
                 <h1 class="logo"> <img src="{% static 'assets/img/logo_1.png' %}" alt="" width="40"> &nbsp Logueate</h1>
-               
+
             </div>
             <div class="card-body">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                        {% endfor %}
+                </ul>
+                {% endif %}
 
                 <form method="POST">
 

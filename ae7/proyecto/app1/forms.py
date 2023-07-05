@@ -48,3 +48,13 @@ class Filtro(forms.Form):
         widget=forms.Select( attrs={'class': 'form-control'}))
 
 
+
+class ObservacionForm(forms.Form):
+    observacion = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-control', 'type': 'text'}))
+
+
+
+
+
+

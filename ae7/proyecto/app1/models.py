@@ -26,3 +26,9 @@ class Tarea(models.Model):
     def __str__(self):
         
         return self.nombre
+class Observacion(models.Model):
+    observacion = models.CharField(max_length=255)
+    tarea = models.ForeignKey(
+        Tarea, on_delete=models.CASCADE)
+
+    
