@@ -102,21 +102,22 @@ def funcion_filtro(request):
 
         if nombre_categoria == "TODAS" and nombre_estado == "TODAS":
 
-            tareas = Tarea.objects.all()
+            tareas = Tarea.objects.filter(user_id=request.user.id)
 
         elif nombre_estado == "TODAS":
 
             tareas = Tarea.objects.filter(
-                categoria=Categoria.objects.get(nombre=nombre_categoria))
+                categoria=Categoria.objects.get(nombre=nombre_categoria), user_id=request.user.id)
 
         elif nombre_categoria == "TODAS":
             tareas = Tarea.objects.filter(
-                estado=Estado.objects.get(nombre=nombre_estado))
+                estado=Estado.objects.get(nombre=nombre_estado), user_id=request.user.id)
 
         else:
             estado = Estado.objects.get(nombre=nombre_estado)
             categoria = Categoria.objects.get(nombre=nombre_categoria)
-            tareas = Tarea.objects.filter(estado=estado, categoria=categoria)
+            tareas = Tarea.objects.filter(
+                estado=estado, categoria=categoria, user_id=request.user.id)
 
         print(tareas)
         registro_tareas_form = RegistroTareasForm()
@@ -128,7 +129,7 @@ def funcion_filtro(request):
 
 
 def tarea(request, id_tarea):
-    request.session['id_tarea'] = id_tarea
+    # request.session['id_tarea'] = id_tarea
     template = "temp_tarea.html"
     formulario = RegistroTareasForm()
     observaciones_form = ObservacionForm()
@@ -169,7 +170,7 @@ def editar_tarea(request, id_tarea):
             tarea.estado = estado
             tarea.categoria = categoria
             tarea.save()
-            request.session['id_tarea'] = ''
+            
             return redirect('/registro_tareas/')
 
     return HttpResponse(id_tarea)
